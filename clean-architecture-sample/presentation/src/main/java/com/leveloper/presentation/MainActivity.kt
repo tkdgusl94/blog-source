@@ -1,28 +1,32 @@
 package com.leveloper.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.leveloper.presentation.base.BaseActivity
+import com.leveloper.presentation.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.activity_main) {
 
-    private val viewModel: MainViewModel by viewModels()
+    override val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding.recyclerView.adapter = GithubAdapter()
+
+        binding.submitBtn.setOnClickListener {
+            val owner = binding.ownerEditText.text.toString()
+            viewModel.getGithubRepositories(owner)
+        }
 
         subscribeToLiveData()
     }
 
     private fun subscribeToLiveData() {
-        viewModel.getGithubRepositories("tkdgusl94")
         viewModel.githubRepositories.observe(this) {
-            it.forEach {
-                println(it)
-            }
+            (binding.recyclerView.adapter as GithubAdapter).setItems(it)
         }
     }
 }
