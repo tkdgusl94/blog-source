@@ -4,12 +4,14 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import javax.inject.Inject
 
-class SamplePagingSource @Inject constructor() : PagingSource<Int, String>() {
+class SamplePagingSource @Inject constructor(
+    private val service: SampleBackendService
+) : PagingSource<Int, String>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, String> {
         return try {
             val next = params.key ?: 0
-            val response = getPagingData(next)
+            val response = service.getPagingData(next)
 
             LoadResult.Page(
                 data = response.data,
@@ -26,19 +28,5 @@ class SamplePagingSource @Inject constructor() : PagingSource<Int, String>() {
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
-    }
-
-    private fun getPagingData(page: Int): PagingSample {
-        val result = mutableListOf<String>()
-
-        val start = page * 10
-        for (i in start until start + 10) {
-            result.add("$i item")
-        }
-
-        return PagingSample(
-            data = result,
-            page = page + 1
-        )
     }
 }
