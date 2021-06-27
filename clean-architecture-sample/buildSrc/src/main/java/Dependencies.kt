@@ -1,5 +1,5 @@
 object Versions {
-    const val KOTLIN_VERSION = "1.4.0"
+    const val KOTLIN_VERSION = "1.5.0"
     const val KOTLINX_COROUTINES = "1.5.0"
     const val BUILD_GRADLE = "4.2.1"
 
@@ -13,8 +13,8 @@ object Versions {
     const val HILT = "2.35.1"
     const val MATERIAL = "1.3.0"
 
-    const val RETROFIT = "2.3.0"
-    const val OKHTTP = "3.9.0"
+    const val RETROFIT = "2.7.1"
+    const val OKHTTP = "4.3.1"
 
     const val JUNIT = "4.13.2"
     const val ANDROID_JUNIT = "1.1.2"
@@ -52,6 +52,7 @@ object Google {
 object Libraries {
     const val RETROFIT                   = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
     const val RETROFIT_CONVERTER_GSON    = "com.squareup.retrofit2:converter-gson:${Versions.RETROFIT}"
+    const val OKHTTP                     = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP}"
     const val OKHTTP_LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
 }
 
