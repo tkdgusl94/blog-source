@@ -1,6 +1,5 @@
 package com.leveloper.treeadapter
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class TreeAdapter<T, VH: TreeViewHolder<T>>(
@@ -28,14 +27,12 @@ abstract class TreeAdapter<T, VH: TreeViewHolder<T>>(
         if (node.isLeaf) return
 
         val isExpand = node.isExpand
-        val position = displayNodes.indexOf(node)
+        val startPosition = displayNodes.indexOf(node) + 1
 
         if (isExpand)
-            notifyItemRangeRemoved(position + 1, removeChildNodes(node, true))
+            notifyItemRangeRemoved(startPosition, removeChildNodes(node, true))
         else
-            notifyItemRangeInserted(position + 1, addChildNodes(node, position + 1))
-
-        notifyItemChanged(position)
+            notifyItemRangeInserted(startPosition, addChildNodes(node, startPosition))
     }
 
     fun replaceAll(nodes: List<Node<T>>) {

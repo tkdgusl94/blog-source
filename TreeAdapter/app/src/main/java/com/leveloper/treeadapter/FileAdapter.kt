@@ -29,6 +29,10 @@ class FileAdapter(nodes: List<Node<Data>>) : TreeAdapter<Data, TreeViewHolder<Da
     override fun onBindViewHolder(holder: TreeViewHolder<Data>, position: Int) {
         val data = displayNodes[position]
         holder.bind(data)
+
+        holder.itemView.setOnSingleClickListener {
+            toggle(data)
+        }
     }
 
     companion object {
@@ -44,6 +48,8 @@ class FileViewHolder(
     override fun bind(data: Node<Data>) {
         if (data.content !is Data.File) return
 
+        setPaddingStart(data)
+
         binding.tvName.text = data.content.name
     }
 }
@@ -54,6 +60,8 @@ class DirectoryViewHolder(
 
     override fun bind(data: Node<Data>) {
         if (data.content !is Data.Directory) return
+
+        setPaddingStart(data)
 
         binding.tvName.text = data.content.name
     }

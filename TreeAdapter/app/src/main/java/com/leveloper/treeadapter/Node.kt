@@ -60,10 +60,6 @@ class Node<T>(val content: T) {
         return this
     }
 
-    override fun toString(): String {
-        return "Node(content=$content,parent=$parent,isExpand=$isExpand,isRoot=$isRoot,isLeaf=$isLeaf,depth=$depth)"
-    }
-
     companion object {
         private const val UNDEFINE = -1
     }
