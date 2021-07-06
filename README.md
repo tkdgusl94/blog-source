@@ -9,5 +9,6 @@ https://leveloper.tistory.com/ 에서 제공하는 예제 source
 - [[Android] Paging 3.0 Library 알아보기](https://leveloper.tistory.com/202)
 - [[Android] Tree 구조를 RecyclerView로 만들어보자 - TreeAdapter](https://leveloper.tistory.com/203)
 - [[Android] 오픈소스 라이선스 목록 보여주기 - OssLicensesMenuActivity](https://leveloper.tistory.com/204)
+- [[Android] Clean Architecture in Android](https://leveloper.tistory.com/205)
 
 
