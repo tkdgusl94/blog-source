@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -14,19 +15,29 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: PagingViewModel by viewModels()
 
-    private lateinit var recyclerView: RecyclerView
+    private val adapter: PagingAdapter by lazy { PagingAdapter() }
+    private val recyclerView: RecyclerView by lazy { findViewById(R.id.recyclerView) }
+    private val swipeRefreshLayout: SwipeRefreshLayout by lazy { findViewById(R.id.swipeRefreshLayout) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.adapter = PagingAdapter()
+        recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
+            PagingLoadStateAdapter { adapter.retry() },
+            PagingLoadStateAdapter { adapter.retry() }
+        )
 
         lifecycleScope.launch {
             viewModel.pagingData.collectLatest {
-                (recyclerView.adapter as PagingAdapter).submitData(it)
+                adapter.submitData(it)
             }
+        }
+
+        swipeRefreshLayout.setOnRefreshListener {
+            // refresh
+            adapter.refresh()
+            swipeRefreshLayout.isRefreshing = false
         }
     }
 }
