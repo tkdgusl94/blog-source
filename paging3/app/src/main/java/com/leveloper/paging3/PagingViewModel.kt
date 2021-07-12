@@ -17,14 +17,10 @@ class PagingViewModel @Inject constructor(
             .insertHeaderItem(item = SampleModel.Header("Header"))
             .insertFooterItem(item = SampleModel.Header("Footer"))
             .insertSeparators { before: SampleModel?, after: SampleModel? ->
-                when {
-                    before is SampleModel.Header || after is SampleModel.Header -> {
-                        SampleModel.Separator
-                    }
-                    else -> {
-                        null
-                    }
-                }
+                if (before is SampleModel.Header || after is SampleModel.Header)
+                    SampleModel.Separator
+                else
+                    null
             }
     }.cachedIn(viewModelScope)
 }
