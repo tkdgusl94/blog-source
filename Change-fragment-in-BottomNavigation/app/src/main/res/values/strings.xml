@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Change fragment in Bottom Navigation</string>
+
+    <string name="main_tab_title_page_1">page1</string>
+    <string name="main_tab_title_page_2">page2</string>
+    <string name="main_tab_title_page_3">page3</string>
+</resources>
