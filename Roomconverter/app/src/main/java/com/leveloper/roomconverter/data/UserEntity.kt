@@ -6,13 +6,13 @@ import androidx.room.PrimaryKey
 @Entity
 data class UserEntity(
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0L,
-    var name: String,
-    var phones: List<String>,
-    var address: Address
+    val id: Long = 0L,
+    val name: String,
+    val phones: List<String>,
+    val address: Address
 )
 
 data class Address(
-    var value: String,
-    var zipcode: Int
+    val value: String,
+    val zipcode: Int
 )

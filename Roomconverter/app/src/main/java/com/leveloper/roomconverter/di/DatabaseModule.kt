@@ -31,8 +31,8 @@ object DatabaseModule {
     fun provideDatabase(@ApplicationContext context: Context, gson: Gson): AppDatabase {
         return Room
             .databaseBuilder(context, AppDatabase::class.java, DB_NAME)
-            .addTypeConverter(StringListTypeConverter(gson))
-            .addTypeConverter(AddressTypeConverter(gson))
+            .addTypeConverter(StringListTypeConverter(gson)) // 'List<String>' converter
+            .addTypeConverter(AddressTypeConverter(gson)) // 'Address' converter
             .build()
     }
 
