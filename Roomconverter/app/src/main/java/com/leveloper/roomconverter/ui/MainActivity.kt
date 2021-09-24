@@ -31,10 +31,10 @@ class MainActivity : AppCompatActivity() {
 
     private suspend fun insertUser() {
         val user = UserEntity(
-            name = "name",
+            name = "leveloper",
             phones = listOf("010-1234-5678", "010-5678-1234"),
             address = Address(
-                value = "서울시 강남구",
+                value = "서울시 강남구 어딘가",
                 zipcode = 12345
             )
         )

@@ -6,9 +6,7 @@ import com.google.gson.Gson
 import com.leveloper.roomconverter.data.Address
 
 @ProvidedTypeConverter
-class AddressTypeConverter(
-    private val gson: Gson
-) {
+class AddressTypeConverter(private val gson: Gson) {
 
     @TypeConverter
     fun listToJson(value: Address): String? {
