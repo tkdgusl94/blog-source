@@ -32,21 +32,25 @@ class MainViewModel @Inject constructor() : ViewModel() {
 
     fun onClickSignOut() {
         viewModelScope.launch {
-            val doSignOut = awaitEvent(
+            val isOk = awaitEvent(
                 DialogEvent(
                     message = "로그아웃 하시겠습니까?"
                 )
             )
 
-            if (doSignOut) signOut()
+            if (isOk) signOut()
         }
     }
 
     private suspend fun signOut() {
+        doSomething()
+
         emitEvent(
             ToastEvent(
                 "로그아웃이 되었습니다."
             )
         )
     }
+
+    private suspend fun doSomething() {}
 }
