@@ -16,3 +16,4 @@ https://leveloper.tistory.com/ 에서 제공하는 예제 source
 - [[Android] viewModelScope.launch() 간단하게 바꿔보기](https://leveloper.tistory.com/213)
 - [[Android] 스켈레톤 로딩 화면 구현하기 - Facebook shimmer library](https://leveloper.tistory.com/214)
 - [[Android] Gson을 이용한 Room에 다양한 타입의 데이터 저장하기](https://leveloper.tistory.com/215)
+- [[Android] ViewModel에서 실행한 이벤트 기다리기](https://leveloper.tistory.com/218)
